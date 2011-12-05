@@ -21,6 +21,11 @@ public class infoBusqueda extends javax.swing.JFrame {
     /** Creates new form infoBusqueda */
     public infoBusqueda() {
         initComponents();
+        
+        infoCuadro.setText("Nombre: \n" );
+        infoCuadro.setText("Sexo: \n");
+        infoCuadro.setText("Fecha de ingreso al Facebins: \n");
+       
     }
 
     /** This method is called from within the constructor to
@@ -68,7 +73,7 @@ public class infoBusqueda extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(100, 60, 190, 130);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel2.setForeground(new java.awt.Color(0, 255, 102));
         jLabel2.setText("Resultados de la Busqueda");
         getContentPane().add(jLabel2);
@@ -87,9 +92,13 @@ public class infoBusqueda extends javax.swing.JFrame {
         Facebook fb = new Facebook ();
          Perfil pf = new Perfil();
        BuscarAmigos fbi = new BuscarAmigos();
+       login lg = new login();
+        
+      
+        
          
          if(fb.addFriends(pf.correo,fbi.mail)){
-          
+              String array[]= new String[fb.contAmigos(pf.correo)];
               JOptionPane.showMessageDialog(this, "Se agrego el Usuario con exito", "GUARDADO", 1);
          }
         
@@ -99,20 +108,6 @@ public class infoBusqueda extends javax.swing.JFrame {
 
     private void infoCuadroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_infoCuadroKeyTyped
 
-        try{
-            Facebook fb = new Facebook();
-        BuscarAmigos fbi = new BuscarAmigos();
-          String email = fbi.mail;
-        
-        RandomAccessFile abc = new RandomAccessFile(fb.path()+email+"\\"+"profile.fbn","rw");
-        
-        infoCuadro.setText("Nombre: ");
-        infoCuadro.setText("Sexo:");
-        infoCuadro.setText("Fecha de ingreso a Facebin: \n"); 
-        
-        }catch(Exception x){
-            
-        }
         
         // TODO add your handling code here:
     }//GEN-LAST:event_infoCuadroKeyTyped

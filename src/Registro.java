@@ -21,7 +21,13 @@ import javax.swing.JOptionPane;
  * @author Gary
  */
 public class Registro extends javax.swing.JFrame {
-  char c;
+  
+    
+    static String infosex = "";
+    static long infoborn = 0;
+    static String infomail = "";
+    static long infoTel = 0;
+    static String infoname = "";
   
   Facebook fb = new Facebook();
   Date d = new Date ();
@@ -238,6 +244,8 @@ public class Registro extends javax.swing.JFrame {
          String password = this.txtpassw.getText();
          String verificarPassword = this.txtpasswv.getText();
          
+         
+         
          String sex = (String) this.Sexo.getSelectedItem();
          char x = sex.charAt(0);
         
@@ -256,6 +264,20 @@ public class Registro extends javax.swing.JFrame {
          
          Date date = new Date(y,b,a);
          
+         //etiqueta para cuadrito de info perfil ;)
+         
+            this.infoTel =  tel;
+            this.infoborn = date.getTime();
+            
+            if(x=='M')
+            this.infosex = "Masculino";
+            else 
+            this.infosex = "Femenino";
+                
+            this.infomail = email;
+         
+            this.infoname= nombre+" "+apellido;
+         //
          
         if( fb.addUser(nombre,password,x,date.getTime(),email,tel)){
          JOptionPane.showMessageDialog(this, "Se agrego el Usuario con exito", "GUARDADO", 1);

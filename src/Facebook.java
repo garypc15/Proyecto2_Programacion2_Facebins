@@ -36,8 +36,54 @@ public class Facebook {
        }
        return true;
     }
-    
-   public boolean seefFriend(String e,String fe){
+    public void arrAmigos(String e){
+        try{
+            RandomAccessFile rafar= new RandomAccessFile(path()+e+"\\"+"manageFriends.fbn","rw");
+            FriendRequest fr = new FriendRequest();
+            int cont=fr.array.length;
+            int pos=0;
+            while(cont>0){
+                String nombre=rafar.readUTF();
+                Boolean aceptado=rafar.readBoolean();
+                Boolean verificar=rafar.readBoolean();
+                if(aceptado&&verificar){
+                    fr.array[pos]=nombre;
+                    cont--;
+                    pos++;
+                }
+            }
+            
+        }catch(Exception ex){
+            System.out.println("Error");
+        }
+    }
+   public int contAmigos(String e){
+       int cont = 0;
+        try{
+            RandomAccessFile rafs = new RandomAccessFile(path()+e+"\\"+"manageFriends.fbn","rw");
+            rafs.seek(0) ;
+            while(rafs.getFilePointer()<rafs.length()){
+                
+                String cef=rafs.readUTF();
+                
+                 boolean amigo =   rafs.readBoolean();
+               boolean decision = rafs.readBoolean();
+               
+               if(amigo==false && decision==false){
+                   cont+=1;
+                   
+               }
+                
+             
+            }
+        }catch(Exception q ){
+            
+            return -1;
+        }
+        return cont;
+   }
+   
+   public boolean seekFriend(String e,String fe){
         try{
             RandomAccessFile rafs = new RandomAccessFile(path()+e+"\\"+"manageFriends.fbn","rw");
             rafs.seek(0) ;
@@ -55,6 +101,33 @@ public class Facebook {
         }
         return true;
    }
+   
+   
+   public void contAmigos2(String mimail){
+       int cont2=0;
+     try{
+            RandomAccessFile rafs = new RandomAccessFile(path()+mimail+"\\"+"manageFriends.fbn","rw");
+            rafs.seek(0) ;
+            while(rafs.getFilePointer()<rafs.length()){
+                String cef=rafs.readUTF();
+                boolean amigo =   rafs.readBoolean();
+               boolean decision = rafs.readBoolean();
+                                
+                 if(amigo==false && decision==false){
+                BuscarAmigos fbi = new BuscarAmigos();
+                fbi.array[cont2]=cef;
+                   
+               }
+               
+            }
+        }catch(Exception q ){
+            
+        }
+       
+   }   
+   
+   
+   
    
    
  
@@ -161,6 +234,7 @@ public class Facebook {
         System.out.println("ouch");
         return false;
     }
+    
     
    
     

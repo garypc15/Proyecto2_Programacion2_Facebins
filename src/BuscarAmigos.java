@@ -18,6 +18,14 @@ import javax.swing.JOptionPane;
 public class BuscarAmigos extends javax.swing.JFrame {
 
     static String mail = "";
+
+    
+        Facebook fb = new Facebook ();
+        Perfil pf = new Perfil();
+        login lg = new login();
+        
+       String array[]= new String[fb.contAmigos(pf.correo)];
+    
     /** Creates new form BuscarAmigos */
     public BuscarAmigos() {
         initComponents();
@@ -81,14 +89,17 @@ public class BuscarAmigos extends javax.swing.JFrame {
 
         Facebook fb = new Facebook ();
         Perfil pf = new Perfil();
+        login lg = new login();
         
-        if(!fb.seefFriend(pf.correo,txtmail.getText())){
+       
+      
+        if(!fb.seekFriend(pf.correo,txtmail.getText())){
             JOptionPane.showMessageDialog(this, "Ya agrego a ese alero", "GUARDADO", 1);
             return ;
         }
         
         if(txtmail.getText().equals(pf.correo)){
-            JOptionPane.showMessageDialog(this, "No ingrese su propio correo", "GUARDADO", 1);
+            JOptionPane.showMessageDialog(this, "No ingrese su propio correo", "ERROR", 1);
             return;
         }
         
@@ -99,7 +110,7 @@ public class BuscarAmigos extends javax.swing.JFrame {
             
             fbi.setVisible(true);
         }else{
-            System.out.println(pf.correo+" "+txtmail.getText());
+            System.out.println(lg.correo+" "+txtmail.getText());
         }
         
         

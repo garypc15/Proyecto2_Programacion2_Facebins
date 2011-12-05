@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  * @author Gary
  */
 public class Perfil extends javax.swing.JFrame {
-    static String correo="";
+    static String correo= "";
  Date d = new Date();
 static int CONT = 0;
       static String a = "";
@@ -36,10 +36,12 @@ static int CONT = 0;
         initComponents();
  
         
- this.infoPerfil.setText("Fecha de Nacimiento\n"+
-                       "Numero de Telefono\n"
-                        +"Sexo\n"+
-                        "Euamail\n");
+        
+        Registro rg = new Registro();
+                    
+        
+        
+ this.infoPerfil.setText("Fecha de Nacimiento\n "+rg.infoborn+"\nNumero de Telefono\n"+rg.infoTel+"\nSexo\n"+rg.infosex+"\nEmail\n"+rg.infomail);
  
     }
     
@@ -105,6 +107,11 @@ return null;
         Solicitudes.setBounds(770, 490, 140, 20);
 
         request.setText("Solicitudes");
+        request.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                requestMouseReleased(evt);
+            }
+        });
         getContentPane().add(request);
         request.setBounds(770, 550, 150, 30);
 
@@ -140,7 +147,7 @@ return null;
         jScrollPane1.setViewportView(infoPerfil);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 340, 150, 180);
+        jScrollPane1.setBounds(30, 340, 210, 160);
 
         CuadroFoto.setText("cuadrofoto");
         CuadroFoto.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(51, 255, 153)));
@@ -191,6 +198,11 @@ return null;
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/social-network-1.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel1MouseReleased(evt);
+            }
+        });
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 930, 690);
 
@@ -274,8 +286,24 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
         
         
         
-        // TODO add your handling code here:
+        // TODO add your handling code here:ll
+        
     }//GEN-LAST:event_SolicitudesMouseReleased
+
+    private void jLabel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseReleased
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1MouseReleased
+
+    private void requestMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestMouseReleased
+
+        FriendRequest amiguito = new FriendRequest();
+        
+        amiguito.setVisible(true);
+
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_requestMouseReleased
 
    
     /**
