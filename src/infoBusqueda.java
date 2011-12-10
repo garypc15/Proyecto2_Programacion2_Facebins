@@ -17,14 +17,14 @@ import javax.swing.JOptionPane;
  * @author Gary
  */
 public class infoBusqueda extends javax.swing.JFrame {
-
     /** Creates new form infoBusqueda */
     public infoBusqueda() {
         initComponents();
-        
-        infoCuadro.setText("Nombre: \n" );
-        infoCuadro.setText("Sexo: \n");
-        infoCuadro.setText("Fecha de ingreso al Facebins: \n");
+        BuscarAmigos bff = new BuscarAmigos();
+          System.out.println(bff.mail);
+        Facebook fb = new Facebook();
+        System.out.println(bff.mail);
+        infoCuadro.setText(fb.bPerfil(bff.mail));
        
     }
 
@@ -60,7 +60,7 @@ public class infoBusqueda extends javax.swing.JFrame {
         infoCuadro.setBackground(new java.awt.Color(51, 51, 51));
         infoCuadro.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 255, 153)));
         infoCuadro.setEditable(false);
-        infoCuadro.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        infoCuadro.setFont(new java.awt.Font("Tahoma", 1, 10));
         infoCuadro.setForeground(new java.awt.Color(0, 255, 153));
         infoCuadro.setDisabledTextColor(new java.awt.Color(0, 204, 102));
         infoCuadro.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -71,7 +71,7 @@ public class infoBusqueda extends javax.swing.JFrame {
         jScrollPane1.setViewportView(infoCuadro);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(100, 60, 190, 130);
+        jScrollPane1.setBounds(80, 70, 240, 130);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel2.setForeground(new java.awt.Color(0, 255, 102));
@@ -92,14 +92,13 @@ public class infoBusqueda extends javax.swing.JFrame {
         Facebook fb = new Facebook ();
          Perfil pf = new Perfil();
        BuscarAmigos fbi = new BuscarAmigos();
-       login lg = new login();
         
       
         
          
          if(fb.addFriends(pf.correo,fbi.mail)){
-              String array[]= new String[fb.contAmigos(pf.correo)];
-              JOptionPane.showMessageDialog(this, "Se agrego el Usuario con exito", "GUARDADO", 1);
+//              String  array[]= new String[fb.contAmigos(Perfil.correo)];
+              JOptionPane.showMessageDialog(this, "Solicitud Envianda", "FaceBins", 1);
          }
         
         

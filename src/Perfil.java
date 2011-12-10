@@ -28,6 +28,7 @@ public class Perfil extends javax.swing.JFrame {
 static int CONT = 0;
       static String a = "";
         
+     
     /** Creates new form Perfil */
     public Perfil() {
      
@@ -35,13 +36,15 @@ static int CONT = 0;
     
         initComponents();
  
-        
-        
         Registro rg = new Registro();
-                    
+                 
+        Facebook fb = new Facebook();
         
+        infoPerfil.setText(fb.iPerfil(correo));
         
- this.infoPerfil.setText("Fecha de Nacimiento\n "+rg.infoborn+"\nNumero de Telefono\n"+rg.infoTel+"\nSexo\n"+rg.infosex+"\nEmail\n"+rg.infomail);
+         poster.setText(fb.showComment(correo));
+      
+        
  
     }
     
@@ -116,6 +119,11 @@ return null;
         request.setBounds(770, 550, 150, 30);
 
         jButton3.setText("Modificar Perfil");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton3MouseReleased(evt);
+            }
+        });
         getContentPane().add(jButton3);
         jButton3.setBounds(770, 610, 150, 30);
 
@@ -149,6 +157,7 @@ return null;
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(30, 340, 210, 160);
 
+        CuadroFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/silueta.jpg"))); // NOI18N
         CuadroFoto.setText("cuadrofoto");
         CuadroFoto.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(51, 255, 153)));
         getContentPane().add(CuadroFoto);
@@ -250,28 +259,39 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
 
 //         
 //         poster.append(post.getText()+"\n"+c.getTime());
-
+   Facebook fb = new Facebook();  
+   
         Calendar c = Calendar.getInstance();
     
-        String   ff = post.getText()+"\n"+c.getTime();
-   
-        if(CONT == 0){
-    
-        poster.append(ff);
-        poster.append(System.getProperty("line.separator"));                    
-        a = post.getText()+"\n"+c.getTime();
-        CONT+=1;
+        String   ff = post.getText()+"\n"+c.getTime()+"\n\n";
+        fb.addComment(correo, ff);
+        poster.setText(fb.showComment(correo));
         post.setText("");
-    
-        }else{
-        
-          String h = poster.getText();
-          poster.setText("");
-          poster.append(ff+"\n");
-          poster.append(System.getProperty("line.separator"));
-          poster.append(h+"\n");            
-          poster.append(System.getProperty("line.separator"));
-    }
+        //System.out.println(fb.showComment(correo));
+//        if(CONT == 0){
+//    
+//        poster.append(ff);
+//        poster.append(System.getProperty("line.separator"));                    
+//        a = post.getText()+"\n"+c.getTime();
+//        CONT+=1;
+//        post.setText("");
+//       fb.addComment(correo, a);
+//       
+//        }else{
+//        
+//          String h = poster.getText();
+//          poster.setText("");
+//          poster.append(ff+"\n");
+//          poster.append(System.getProperty("line.separator"));
+//          poster.append(h+"\n");            
+//          poster.append(System.getProperty("line.separator"));
+//          
+//          comment=poster.getText();
+//          
+//          fb.addComment(correo,comment);
+//          post.setText("");
+//          
+//        }
     
           
         
@@ -298,12 +318,27 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
     private void requestMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestMouseReleased
 
         FriendRequest amiguito = new FriendRequest();
-        
+       
+        Facebook fb = new Facebook();
+        fb.arrAmigos(Perfil.correo);
+         String names []=new String[fb.contAmigos(Perfil.correo)];
+           
         amiguito.setVisible(true);
-
+        
         
         // TODO add your handling code here:
     }//GEN-LAST:event_requestMouseReleased
+
+    private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
+
+        
+        ModificarPerfil mp = new ModificarPerfil();
+        
+        mp.setVisible(true);
+        
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseReleased
 
    
     /**

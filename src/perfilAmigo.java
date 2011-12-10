@@ -19,11 +19,20 @@ import javax.swing.JOptionPane;
  */
 public class perfilAmigo extends javax.swing.JFrame {
 
-    static int CONT=0;
-    String a = "";
+    static String cc="";
     /** Creates new form perfilAmigo */
     public perfilAmigo() {
         initComponents();
+
+                 
+        Facebook fb = new Facebook();
+        
+        
+    infoPerfil.setText(fb.iPerfil(cc));
+        
+         poster.setText(fb.showComment(cc));
+      
+    
     }
 
     /** This method is called from within the constructor to
@@ -47,6 +56,7 @@ public class perfilAmigo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        CuadroFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/silueta.jpg"))); // NOI18N
         CuadroFoto.setText("cuadrofoto");
         CuadroFoto.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(51, 255, 153)));
         getContentPane().add(CuadroFoto);
@@ -112,31 +122,17 @@ public class perfilAmigo extends javax.swing.JFrame {
 
     private void ClickPostMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClickPostMouseReleased
         
-        //
-        //         poster.append(post.getText()+"\n"+c.getTime());
         
+        
+        Facebook fb = new Facebook();  
+   
         Calendar c = Calendar.getInstance();
-        
-        String   ff = post.getText()+"\n"+c.getTime();
-        
-        if(CONT == 0){
-            
-            poster.append(ff);
-            poster.append(System.getProperty("line.separator"));
-            a = post.getText()+"\n"+c.getTime();
-            CONT+=1;
-            post.setText("");
-            
-        }else{
-            
-            String h = poster.getText();
-            poster.setText("");
-            poster.append(ff+"\n");
-            poster.append(System.getProperty("line.separator"));
-            poster.append(h+"\n");
-            poster.append(System.getProperty("line.separator"));
-        }
-        
+    
+        String   ff = post.getText()+"\n"+c.getTime()+"\n\n";
+        fb.addComment(cc, ff);
+        poster.setText(fb.showComment(cc));
+        post.setText("");
+   
         
     }//GEN-LAST:event_ClickPostMouseReleased
 

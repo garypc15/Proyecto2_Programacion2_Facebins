@@ -172,7 +172,7 @@ public class login extends javax.swing.JFrame {
         hf.setVisible(true);
         
       }
-      else{
+     else {
                   JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectas","ERROR",0);
       }
         // TODO add your handling code here:

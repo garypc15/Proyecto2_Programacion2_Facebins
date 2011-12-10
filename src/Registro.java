@@ -23,11 +23,7 @@ import javax.swing.JOptionPane;
 public class Registro extends javax.swing.JFrame {
   
     
-    static String infosex = "";
-    static long infoborn = 0;
-    static String infomail = "";
-    static long infoTel = 0;
-    static String infoname = "";
+  
   
   Facebook fb = new Facebook();
   Date d = new Date ();
@@ -51,13 +47,11 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtTel = new javax.swing.JTextField();
-        txtApellido = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -67,12 +61,8 @@ public class Registro extends javax.swing.JFrame {
         mesBox = new javax.swing.JComboBox();
         diaBox = new javax.swing.JComboBox();
         OK = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        txtUserName = new javax.swing.JTextField();
         txtpassw = new javax.swing.JPasswordField();
-        txtpasswv = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/social-network-1.jpg"))); // NOI18N
@@ -89,41 +79,33 @@ public class Registro extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(70, 70, 80, 15);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel2.setForeground(new java.awt.Color(102, 255, 153));
-        jLabel2.setText("Apellido");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(70, 110, 49, 15);
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel3.setForeground(new java.awt.Color(102, 255, 153));
         jLabel3.setText("Fecha de Nacimiento");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 260, 140, 30);
+        jLabel3.setBounds(140, 180, 140, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel6.setForeground(new java.awt.Color(102, 255, 153));
         jLabel6.setText("Telefono");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(30, 390, 53, 15);
+        jLabel6.setBounds(80, 340, 53, 15);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel4.setForeground(new java.awt.Color(102, 255, 153));
         jLabel4.setText("Sexo");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(60, 440, 30, 15);
+        jLabel4.setBounds(80, 430, 30, 15);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel5.setForeground(new java.awt.Color(102, 255, 153));
         jLabel5.setText("Email");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(70, 360, 31, 15);
+        jLabel5.setBounds(80, 300, 31, 15);
         getContentPane().add(txtTel);
-        txtTel.setBounds(160, 390, 110, 20);
-        getContentPane().add(txtApellido);
-        txtApellido.setBounds(170, 110, 110, 20);
+        txtTel.setBounds(160, 340, 110, 20);
         getContentPane().add(txtEmail);
-        txtEmail.setBounds(160, 360, 110, 20);
+        txtEmail.setBounds(160, 300, 110, 20);
 
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +124,7 @@ public class Registro extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(102, 255, 153));
         jLabel7.setText("Dia            Mes              Año                    ");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(100, 280, 300, 30);
+        jLabel7.setBounds(100, 210, 300, 30);
 
         Sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Femenino" }));
         Sexo.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +133,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Sexo);
-        Sexo.setBounds(160, 440, 110, 20);
+        Sexo.setBounds(180, 430, 110, 20);
 
         yearBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935", "1934", "1933", "1932", "1931", "1930", "1929", "1928", "1927", "1926", "1925", "1924", "1923", "1922", "1921", "1920", "1919", "1918", "1917", "1916", "1915", "1914", "1913", "1912", "1911" }));
         yearBox.addActionListener(new java.awt.event.ActionListener() {
@@ -160,7 +142,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(yearBox);
-        yearBox.setBounds(240, 310, 90, 20);
+        yearBox.setBounds(240, 250, 90, 20);
 
         jLabel9.setFont(new java.awt.Font("Microsoft Tai Le", 1, 24));
         jLabel9.setForeground(new java.awt.Color(102, 255, 153));
@@ -175,7 +157,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mesBox);
-        mesBox.setBounds(160, 310, 60, 20);
+        mesBox.setBounds(160, 250, 60, 20);
 
         diaBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         diaBox.addActionListener(new java.awt.event.ActionListener() {
@@ -184,7 +166,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(diaBox);
-        diaBox.setBounds(90, 310, 50, 20);
+        diaBox.setBounds(80, 250, 50, 20);
 
         OK.setText("Aceptar");
         OK.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -194,30 +176,14 @@ public class Registro extends javax.swing.JFrame {
         });
         getContentPane().add(OK);
         OK.setBounds(170, 510, 100, 23);
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel8.setForeground(new java.awt.Color(102, 255, 153));
-        jLabel8.setText("Nombre de Usuario");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(20, 150, 150, 30);
-        getContentPane().add(txtUserName);
-        txtUserName.setBounds(170, 160, 110, 20);
         getContentPane().add(txtpassw);
-        txtpassw.setBounds(170, 200, 110, 20);
-        getContentPane().add(txtpasswv);
-        txtpasswv.setBounds(170, 230, 110, 20);
+        txtpassw.setBounds(170, 140, 110, 20);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel10.setForeground(new java.awt.Color(102, 255, 153));
         jLabel10.setText("Contraseña");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(30, 200, 100, 15);
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel11.setForeground(new java.awt.Color(102, 255, 153));
-        jLabel11.setText("Verficar Contraseña");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(20, 230, 130, 20);
+        jLabel10.setBounds(60, 140, 100, 15);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/social-network-1.jpg"))); // NOI18N
         jLabel13.setText("jLabel13");
@@ -233,16 +199,14 @@ public class Registro extends javax.swing.JFrame {
 
     private void OKMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKMouseReleased
 
-        String cualquiera = "";
+       
         
         try{
         
         
          String nombre = this.txtName.getText();
-         String apellido = this.txtApellido.getText();
-         String user = this.txtUserName.getText();
          String password = this.txtpassw.getText();
-         String verificarPassword = this.txtpasswv.getText();
+         
          
          
          
@@ -261,34 +225,24 @@ public class Registro extends javax.swing.JFrame {
          int a = Integer.parseInt(dia);
           int   b = Integer.parseInt(mes);
           int   y = Integer.parseInt(year);
+ 
+          Calendar c = Calendar.getInstance();
+          c.set(y,b,a);
+         Date date = c.getTime();
          
-         Date date = new Date(y,b,a);
-         
-         //etiqueta para cuadrito de info perfil ;)
-         
-            this.infoTel =  tel;
-            this.infoborn = date.getTime();
-            
-            if(x=='M')
-            this.infosex = "Masculino";
-            else 
-            this.infosex = "Femenino";
-                
-            this.infomail = email;
-         
-            this.infoname= nombre+" "+apellido;
-         //
-         
+  
         if( fb.addUser(nombre,password,x,date.getTime(),email,tel)){
          JOptionPane.showMessageDialog(this, "Se agrego el Usuario con exito", "GUARDADO", 1);
-                limpiar();
+         Perfil.correo=email;     
+       
             }else{
                 JOptionPane.showMessageDialog(this, "No se pudo agregar el Usuario","ERROR",0);
-                limpiar();
+                return;
         }
         }catch(Exception e){
             System.out.println(e.getMessage());//JOptionPane.showMessageDialog(this, "Error: "+cualquiera);//+e.getCause(), "ERROR", 0);            
             limpiar();
+            return;
     }
         HomeFeed hf = new HomeFeed();
         this.dispose();
@@ -345,25 +299,19 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JComboBox diaBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox mesBox;
-    private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtTel;
-    private javax.swing.JTextField txtUserName;
     private javax.swing.JPasswordField txtpassw;
-    private javax.swing.JPasswordField txtpasswv;
     private javax.swing.JComboBox yearBox;
     // End of variables declaration//GEN-END:variables
 }

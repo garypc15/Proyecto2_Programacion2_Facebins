@@ -20,29 +20,28 @@ public class FriendRequest extends javax.swing.JFrame {
     
     Perfil pf = new Perfil();
     Facebook fb = new Facebook();
-    
-    
-    
-   login lg = new login();
-        
-       String array[]= new String[fb.contAmigos(pf.correo)];
-    
+   
+    login lg = new login();
+    String array[]= new String[fb.contAmigos(pf.correo)];
+          
+   
        
     /** Creates new form FriendRequest */
     public FriendRequest() {
         initComponents();
     
-        
         DefaultListModel modelo = new DefaultListModel();
-    String aka []={"aka47","aka2"};
-//    fb.arrAmigos(pf.correo);
-    for(int i =0; i <aka.length;i++){
-        modelo.add(i,aka[i]);
-//        System.out.println(aka[i]);         
-//        
+//    String aka []={"aka47","aka2"};
+  // fb.arrAmigos(Perfil.correo);
+
+        System.out.println(array.length);
+   for(int i =0; i <array.length;i++){
+        modelo.add(i,array[i]);
+  System.out.println(array[i]);         
+//////        
         lista.setModel(modelo);      
-//        
-    
+//////        
+////    
     }
     }
     
@@ -60,9 +59,9 @@ public class FriendRequest extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,15 +79,15 @@ public class FriendRequest extends javax.swing.JFrame {
         getContentPane().add(jButton2);
         jButton2.setBounds(250, 190, 90, 23);
 
+        jButton1.setText("Aceptar");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(250, 110, 71, 23);
+
         lista.setModel(lista.getModel());
         jScrollPane1.setViewportView(lista);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(60, 100, 150, 190);
-
-        jButton1.setText("Aceptar");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(250, 110, 71, 23);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/social-network-1.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -105,6 +104,8 @@ public class FriendRequest extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
+                
+                
    
                 new FriendRequest().setVisible(true);
             }

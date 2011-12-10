@@ -24,7 +24,7 @@ public class BuscarAmigos extends javax.swing.JFrame {
         Perfil pf = new Perfil();
         login lg = new login();
         
-       String array[]= new String[fb.contAmigos(pf.correo)];
+       //String array[]= new String[fb.contAmigos(pf.correo)];
     
     /** Creates new form BuscarAmigos */
     public BuscarAmigos() {
@@ -105,8 +105,8 @@ public class BuscarAmigos extends javax.swing.JFrame {
         
         
         if(!fb.seekEmail(this.txtmail.getText())){
-            infoBusqueda fbi = new infoBusqueda();
             mail = txtmail.getText();
+            infoBusqueda fbi = new infoBusqueda();
             
             fbi.setVisible(true);
         }else{
