@@ -229,11 +229,13 @@ public class Registro extends javax.swing.JFrame {
           Calendar c = Calendar.getInstance();
           c.set(y,b,a);
          Date date = c.getTime();
-         
+          
+         Perfil.correo=email;
+      
   
         if( fb.addUser(nombre,password,x,date.getTime(),email,tel)){
          JOptionPane.showMessageDialog(this, "Se agrego el Usuario con exito", "GUARDADO", 1);
-         Perfil.correo=email;     
+              
        
             }else{
                 JOptionPane.showMessageDialog(this, "No se pudo agregar el Usuario","ERROR",0);

@@ -206,8 +206,6 @@ public class Facebook {
         try
         {
         RandomAccessFile rafau= new RandomAccessFile("gerencia.fbn","rw");
-     //   if(!seekEmail(e)){
-   //         rafau.seek(rafau.getFilePointer()-1);
        while(rafau.getFilePointer()<rafau.length()){
         if(rafau.readUTF().equals(e)){
                 rafau.readUTF();
@@ -226,22 +224,7 @@ public class Facebook {
         }
         return false;
     }
-//    
-//     private void borrarDirectorio (String e){//File directorio){
-//                File directorio = new File(path()+e);
-//                File[] ficheros = directorio.listFiles();
-//                 for (int x=0;x<ficheros.length;x++){
-//                        if (ficheros[x].isDirectory()) {
-//                                borrarDirectorio(ficheros[x].toString());
-//                        
-//                }       
-//                         ficheros[x].delete();
-//        }
-//                 
-//                
-//     }
-//     
-//     
+
     
      
     public String iPerfil(String e){
@@ -367,19 +350,7 @@ public class Facebook {
           }
           return "";
       }
-    //    rafc.seek(0);
-//    if(rafc.length()==0){
-//        return "";
-//    }
-//        
-//    String com = rafc.readUTF();
-//    return com;
-//    
-//          }catch(Exception s){
-//              System.out.println("...");
-//          }
-//          return "";
-          
+       
   
   public void borrarDirectorio (String e){//File directorio){
                 File directorio = new File(path()+e);
@@ -426,8 +397,3 @@ borrarDirectorio(ficheros[x].toString());
 
 }
     
-    
-   
-
-
-
