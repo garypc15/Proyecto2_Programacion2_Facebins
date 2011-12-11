@@ -32,9 +32,7 @@ public class Registro extends javax.swing.JFrame {
     public Registro() {
         initComponents();
     }
-    public void limpiar(){
    
-    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -63,6 +61,8 @@ public class Registro extends javax.swing.JFrame {
         OK = new javax.swing.JButton();
         txtpassw = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        status = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/social-network-1.jpg"))); // NOI18N
@@ -185,10 +185,18 @@ public class Registro extends javax.swing.JFrame {
         getContentPane().add(jLabel10);
         jLabel10.setBounds(60, 140, 100, 15);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 255, 153));
+        jLabel2.setText("Status");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(80, 470, 41, 15);
+        getContentPane().add(status);
+        status.setBounds(180, 470, 150, 20);
+
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/social-network-1.jpg"))); // NOI18N
         jLabel13.setText("jLabel13");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(0, 4, 490, 560);
+        jLabel13.setBounds(0, 10, 490, 560);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -207,13 +215,13 @@ public class Registro extends javax.swing.JFrame {
          String nombre = this.txtName.getText();
          String password = this.txtpassw.getText();
          
-         
+         String Status = this.status.getText();
          
          
          String sex = (String) this.Sexo.getSelectedItem();
          char x = sex.charAt(0);
         
-         String email = this.txtEmail.getText();
+         Perfil.correo = this.txtEmail.getText();
          int tel = Integer.parseInt( this.txtTel.getText());
          
          
@@ -230,10 +238,10 @@ public class Registro extends javax.swing.JFrame {
           c.set(y,b,a);
          Date date = c.getTime();
           
-         Perfil.correo=email;
+         //Perfil.correo=email;
       
   
-        if( fb.addUser(nombre,password,x,date.getTime(),email,tel)){
+        if( fb.addUser(nombre,password,x,date.getTime(),Perfil.correo,tel,Status)){
          JOptionPane.showMessageDialog(this, "Se agrego el Usuario con exito", "GUARDADO", 1);
               
        
@@ -243,7 +251,7 @@ public class Registro extends javax.swing.JFrame {
         }
         }catch(Exception e){
             System.out.println(e.getMessage());//JOptionPane.showMessageDialog(this, "Error: "+cualquiera);//+e.getCause(), "ERROR", 0);            
-            limpiar();
+           
             return;
     }
         HomeFeed hf = new HomeFeed();
@@ -303,6 +311,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -310,6 +319,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox mesBox;
+    private javax.swing.JTextField status;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtTel;

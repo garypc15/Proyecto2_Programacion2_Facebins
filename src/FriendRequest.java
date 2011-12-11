@@ -2,6 +2,7 @@
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /*
  * To change this template, choose Tools | Templates
@@ -23,7 +24,7 @@ public class FriendRequest extends javax.swing.JFrame {
     Facebook fb = new Facebook();
    
     login lg = new login();
-    String array[]= new String[fb.contAmigos(pf.correo)];
+   // String array[]= new String[fb.contAmigos(pf.correo)];
      
     
     infoBusqueda fi = new infoBusqueda();
@@ -38,14 +39,16 @@ public class FriendRequest extends javax.swing.JFrame {
 
   //      System.out.println(array.length);
    
-            Object ia[]=fi.al.toArray();
+     //   String
+                
+      String am[]=  fb.listaAmigos(Perfil.correo);
+            //Object ia[]=fi.al.toArray();
         DefaultListModel modelo = new DefaultListModel();
 
         try{
-            for(int i=0;i<ia.length;i++ ){
+            for(int i=0;i<am.length;i++ ){
                 
-            modelo.add(i,ia[i]);
-                System.out.println(ia[i]);
+            modelo.add(i,am[i]);
             }
       
             
@@ -68,8 +71,8 @@ public class FriendRequest extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        rechazar = new javax.swing.JButton();
+        aceptar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
@@ -85,13 +88,18 @@ public class FriendRequest extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(140, 0, 260, 70);
 
-        jButton2.setText("Rechazar");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(250, 190, 90, 23);
+        rechazar.setText("Rechazar");
+        getContentPane().add(rechazar);
+        rechazar.setBounds(250, 190, 90, 23);
 
-        jButton1.setText("Aceptar");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(250, 110, 71, 23);
+        aceptar.setText("Aceptar");
+        aceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                aceptarMouseReleased(evt);
+            }
+        });
+        getContentPane().add(aceptar);
+        aceptar.setBounds(250, 110, 90, 23);
 
         lista.setModel(lista.getModel());
         jScrollPane1.setViewportView(lista);
@@ -106,6 +114,28 @@ public class FriendRequest extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void aceptarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aceptarMouseReleased
+
+        
+       if(lista.getSelectedIndex()>1){
+            JOptionPane.showMessageDialog(this, "Seleccione solo un Correo","ERROR",0);
+            return;
+       }else{ 
+           
+         String nom = (String) this.lista.getSelectedValue();
+      
+         fb.aceptarRequest(Perfil.correo, nom);
+        
+        DefaultListModel modelo = (DefaultListModel) lista.getModel();
+        int index = lista.getSelectedIndex();
+        modelo.remove( index );
+      
+        
+       }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aceptarMouseReleased
 
     /**
      * @param args the command line arguments
@@ -122,11 +152,11 @@ public class FriendRequest extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton aceptar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList lista;
+    private javax.swing.JButton rechazar;
     // End of variables declaration//GEN-END:variables
 }

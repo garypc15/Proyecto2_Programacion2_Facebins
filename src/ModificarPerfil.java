@@ -168,10 +168,11 @@ public class ModificarPerfil extends javax.swing.JFrame {
              
            
                  if(fb.desactivarCuenta(Perfil.correo)){
+                    dispose(); 
                      System.out.println("BORRANDO...");
                     login lg = new login();
                     lg.setVisible(true);
-                    dispose();  
+                     
                      
                  }else{
                      System.out.println("FALSO");

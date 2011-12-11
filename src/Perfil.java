@@ -4,6 +4,7 @@ import java.io.RandomAccessFile;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -23,10 +24,11 @@ import javax.swing.JOptionPane;
  * @author Gary
  */
 public class Perfil extends javax.swing.JFrame {
-    static String correo= "";
- Date d = new Date();
-static int CONT = 0;
-      static String a = "";
+           
+            static String correo= "";
+            Date d = new Date();
+            static int CONT = 0;
+            static String a = "";
         
      
     /** Creates new form Perfil */
@@ -41,10 +43,21 @@ static int CONT = 0;
         Facebook fb = new Facebook();
         
         infoPerfil.setText(fb.iPerfil(correo));
-        
-         poster.setText(fb.showComment(correo));
+       
+        //if(!poster.getText().equals(""))
+        poster.setText(fb.showComment(correo));
         // fb.closePost(correo);
-        
+ 
+       String amm[]=  fb.misAmigos(Perfil.correo);
+          
+       DefaultListModel modelo = new DefaultListModel();
+                   for(int i=0;i<amm.length;i++ ){
+                
+           modelo.add(i,amm[i]);
+           }
+     
+           
+       listAmigos.setModel(modelo);      
  
     }
     
@@ -88,6 +101,10 @@ return null;
         jScrollPane4 = new javax.swing.JScrollPane();
         post = new javax.swing.JEditorPane();
         poster = new java.awt.TextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listAmigos = new javax.swing.JList();
+        jLabel4 = new javax.swing.JLabel();
+        verPerfil = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -107,7 +124,7 @@ return null;
             }
         });
         getContentPane().add(Solicitudes);
-        Solicitudes.setBounds(770, 490, 140, 20);
+        Solicitudes.setBounds(770, 500, 140, 20);
 
         request.setText("Solicitudes");
         request.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -205,6 +222,29 @@ return null;
         getContentPane().add(poster);
         poster.setBounds(300, 250, 410, 400);
 
+        listAmigos.setBackground(new java.awt.Color(102, 102, 102));
+        listAmigos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        listAmigos.setForeground(new java.awt.Color(0, 255, 153));
+        jScrollPane2.setViewportView(listAmigos);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(780, 150, 120, 240);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 255, 153));
+        jLabel4.setText("MIS AMIGOS");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(790, 90, 130, 50);
+
+        verPerfil.setText("Ver Pefil");
+        verPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                verPerfilMouseReleased(evt);
+            }
+        });
+        getContentPane().add(verPerfil);
+        verPerfil.setBounds(800, 400, 80, 40);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/social-network-1.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -259,10 +299,14 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
 
         Facebook fb = new Facebook();  
    
-        Calendar c = Calendar.getInstance();
-        if(poster.getText().equals("")){
+        if(post.getText().equals("")){
+            return;
+        }
             
-        String   ff = post.getText()+"\n"+c.getTime()+"\n\n";
+        Calendar c = Calendar.getInstance();
+        
+        if(poster.getText().equals("")){
+        String   ff =post.getText()+"\n"+c.getTime()+"\n\n";
         fb.addComment(correo, ff);
         poster.setText(fb.showComment(correo));
        
@@ -273,10 +317,10 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
         fb.addComment(correo, ff);
         poster.setText(fb.showComment(correo));
        
-        //fb.closePost(correo);
+       
         }
           
-        
+        post.setText("");
     }//GEN-LAST:event_ClickPostMouseReleased
 
     private void SolicitudesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SolicitudesMouseReleased
@@ -322,6 +366,21 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseReleased
 
+    private void verPerfilMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verPerfilMouseReleased
+
+  String am =(String) listAmigos.getSelectedValue();
+  String ma =(String) listAmigos.getSelectedValue();
+  
+  perfilAmigo.cc=am;
+  perfilAmigo pa = new perfilAmigo(am);
+        
+        pa.setVisible(true);
+        dispose();
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_verPerfilMouseReleased
+
    
     /**
      * @param args the command line arguments
@@ -343,6 +402,7 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
             String path=raff.readUTF();
             System.out.println(path);
             CuadroFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(path))); // NOI18N
+      
         }catch(Exception ex){
             
         }
@@ -359,11 +419,15 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JList listAmigos;
     private javax.swing.JEditorPane post;
     private java.awt.TextArea poster;
     private javax.swing.JButton request;
+    private javax.swing.JButton verPerfil;
     // End of variables declaration//GEN-END:variables
 
 

@@ -11,8 +11,8 @@ import java.io.File;
  * @author Gary
  */
 public class dire {
-    static File p = new File("dire.java");
-public static void main(String arg[]){
-    System.out.println(p.getAbsolutePath());     
-}
+   
+    
+    
+    
 }

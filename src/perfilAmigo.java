@@ -21,7 +21,7 @@ public class perfilAmigo extends javax.swing.JFrame {
 
     static String cc="";
     /** Creates new form perfilAmigo */
-    public perfilAmigo() {
+    public perfilAmigo(String e) {
         initComponents();
 
                  
@@ -29,7 +29,8 @@ public class perfilAmigo extends javax.swing.JFrame {
         
         
     infoPerfil.setText(fb.iPerfil(cc));
-        
+       
+    if(!poster.getText().equals(""))
          poster.setText(fb.showComment(cc));
       
     
@@ -128,11 +129,22 @@ public class perfilAmigo extends javax.swing.JFrame {
    
         Calendar c = Calendar.getInstance();
     
-        String   ff = post.getText()+"\n"+c.getTime()+"\n\n";
+        
+          if(poster.getText().equals("")){
+        
+        String   ff ="\n"+ post.getText()+"\n"+c.getTime()+"\n\n";
         fb.addComment(cc, ff);
         poster.setText(fb.showComment(cc));
-        post.setText("");
+        //post.setText("");
    
+          }else{
+        String pp =poster.getText();
+        String   ff =post.getText()+"\n"+c.getTime()+"\n\n"+pp;
+        fb.addComment(Perfil.correo, ff);
+        poster.setText(fb.showComment(Perfil.correo));
+             
+          }
+      
         
     }//GEN-LAST:event_ClickPostMouseReleased
 
@@ -143,7 +155,7 @@ public class perfilAmigo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new perfilAmigo().setVisible(true);
+                new perfilAmigo("").setVisible(true);
             }
         });
     }
