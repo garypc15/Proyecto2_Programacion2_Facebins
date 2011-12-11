@@ -43,7 +43,7 @@ static int CONT = 0;
         infoPerfil.setText(fb.iPerfil(correo));
         
          poster.setText(fb.showComment(correo));
-      
+        // fb.closePost(correo);
         
  
     }
@@ -257,42 +257,24 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
 
     private void ClickPostMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClickPostMouseReleased
 
-//         
-//         poster.append(post.getText()+"\n"+c.getTime());
-   Facebook fb = new Facebook();  
+        Facebook fb = new Facebook();  
    
         Calendar c = Calendar.getInstance();
-    
+        if(poster.getText().equals("")){
+            
         String   ff = post.getText()+"\n"+c.getTime()+"\n\n";
         fb.addComment(correo, ff);
         poster.setText(fb.showComment(correo));
-        post.setText("");
-        //System.out.println(fb.showComment(correo));
-//        if(CONT == 0){
-//    
-//        poster.append(ff);
-//        poster.append(System.getProperty("line.separator"));                    
-//        a = post.getText()+"\n"+c.getTime();
-//        CONT+=1;
-//        post.setText("");
-//       fb.addComment(correo, a);
-//       
-//        }else{
-//        
-//          String h = poster.getText();
-//          poster.setText("");
-//          poster.append(ff+"\n");
-//          poster.append(System.getProperty("line.separator"));
-//          poster.append(h+"\n");            
-//          poster.append(System.getProperty("line.separator"));
-//          
-//          comment=poster.getText();
-//          
-//          fb.addComment(correo,comment);
-//          post.setText("");
-//          
-//        }
-    
+       
+        }else{
+        
+        String pp =poster.getText();
+        String   ff = post.getText()+"\n"+c.getTime()+"\n\n"+pp;
+        fb.addComment(correo, ff);
+        poster.setText(fb.showComment(correo));
+       
+        //fb.closePost(correo);
+        }
           
         
     }//GEN-LAST:event_ClickPostMouseReleased
@@ -320,9 +302,9 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
         FriendRequest amiguito = new FriendRequest();
        
         Facebook fb = new Facebook();
-        fb.arrAmigos(Perfil.correo);
-         String names []=new String[fb.contAmigos(Perfil.correo)];
-           
+//        fb.arrAmigos(Perfil.correo);
+//         String names []=new String[fb.contAmigos(Perfil.correo)];
+//           
         amiguito.setVisible(true);
         
         

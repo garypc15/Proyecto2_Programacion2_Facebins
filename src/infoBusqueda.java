@@ -1,5 +1,6 @@
 
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /*
@@ -18,14 +19,19 @@ import javax.swing.JOptionPane;
  */
 public class infoBusqueda extends javax.swing.JFrame {
     /** Creates new form infoBusqueda */
+   
+     static ArrayList al = new ArrayList();
+     
     public infoBusqueda() {
         initComponents();
+        
         BuscarAmigos bff = new BuscarAmigos();
-          System.out.println(bff.mail);
         Facebook fb = new Facebook();
-        System.out.println(bff.mail);
+        //System.out.println(bff.mail);
         infoCuadro.setText(fb.bPerfil(bff.mail));
        
+       
+        
     }
 
     /** This method is called from within the constructor to
@@ -98,6 +104,11 @@ public class infoBusqueda extends javax.swing.JFrame {
          
          if(fb.addFriends(pf.correo,fbi.mail)){
 //              String  array[]= new String[fb.contAmigos(Perfil.correo)];
+            al.add(pf.correo);    
+             
+             //fb.arrAmigos(fbi.mail);
+//    String names []=new String[fb.contAmigos(Perfil.correo)];           
+            //this.al.add(pf.correo);
               JOptionPane.showMessageDialog(this, "Solicitud Envianda", "FaceBins", 1);
          }
         

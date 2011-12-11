@@ -44,6 +44,7 @@ public class ModificarPerfil extends javax.swing.JFrame {
         diabox = new javax.swing.JComboBox();
         mesbox = new javax.swing.JComboBox();
         yearbox = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(450, 450));
@@ -86,14 +87,14 @@ public class ModificarPerfil extends javax.swing.JFrame {
         getContentPane().add(actibox);
         actibox.setBounds(240, 250, 70, 20);
 
-        acp.setText("Aceptar");
+        acp.setText("Modificar");
         acp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 acpMouseReleased(evt);
             }
         });
         getContentPane().add(acp);
-        acp.setBounds(210, 350, 71, 23);
+        acp.setBounds(100, 340, 90, 23);
 
         diabox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         getContentPane().add(diabox);
@@ -106,6 +107,15 @@ public class ModificarPerfil extends javax.swing.JFrame {
         yearbox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935", "1934", "1933", "1932", "1931", "1930", "1929", "1928", "1927", "1926", "1925", "1924", "1923", "1922", "1921", "1920", "1919", "1918", "1917", "1916", "1915", "1914", "1913", "1912", "1911" }));
         getContentPane().add(yearbox);
         yearbox.setBounds(310, 190, 49, 20);
+
+        jButton1.setText("Regresar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton1MouseReleased(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(233, 340, 100, 23);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/social-network-1.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -120,11 +130,7 @@ public class ModificarPerfil extends javax.swing.JFrame {
         Facebook fb = new Facebook();
         
         String tt =tel.getText();
-        if(tt.equals("")){
-            JOptionPane.showMessageDialog(this, "Ingrese un numero telefonico");
-            
-        }
-         int t = Integer.parseInt(tt);
+//         int t = Integer.parseInt(tt);
          String dd = (String) diabox.getSelectedItem();
          String dm = (String) mesbox.getSelectedItem();
          String yd =(String) yearbox.getSelectedItem();
@@ -138,19 +144,58 @@ public class ModificarPerfil extends javax.swing.JFrame {
          Date date = c.getTime();
          
          String ac= (String) actibox.getSelectedItem();
-        if(!tt.equals("")){
-         if(ac.equals("Activada")){
-        fb.modificarPerfil(Perfil.correo, t, date.getTime(),true);
-        }else if(ac.equals("Desactivada")){
-        fb.modificarPerfil(Perfil.correo, t, date.getTime(),false);
-            
-        }
+       
+         
+         
+//         if(!tt.equals("")){
+//           int t = Integer.parseInt(tt);
+//      
+             if(ac.equals("Activada")&&(!tt.equals(""))){
+           int t = Integer.parseInt(tt);
+
+       fb.modificarPerfil(Perfil.correo, t, date.getTime());
         dispose();
         Perfil pf = new Perfil();
-        pf.setVisible(true);
+        pf.setVisible(true);  
         }
+           if(ac.equals("Activada")&&(tt.equals(""))){
+            JOptionPane.showMessageDialog(this, "Ingrese un numero telefonico");
+                     
+           }
+         
+         
+         if(ac.equals("Desactivada")){
+             
+           
+                 if(fb.desactivarCuenta(Perfil.correo)){
+                     System.out.println("BORRANDO...");
+                    login lg = new login();
+                    lg.setVisible(true);
+                    dispose();  
+                     
+                 }else{
+                     System.out.println("FALSO");
+                 }
+              
+             
+         }
+         
+      
+        
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_acpMouseReleased
+
+    private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
+
+        Perfil pf = new Perfil();
+        
+        pf.setVisible(true);
+        
+        dispose();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseReleased
 
     /**
      * @param args the command line arguments
@@ -167,6 +212,7 @@ public class ModificarPerfil extends javax.swing.JFrame {
     private javax.swing.JButton acp;
     private javax.swing.JComboBox actibox;
     private javax.swing.JComboBox diabox;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
