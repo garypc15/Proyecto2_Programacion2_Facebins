@@ -19,19 +19,21 @@ import javax.swing.JOptionPane;
  */
 public class perfilAmigo extends javax.swing.JFrame {
 
-    static String cc="";
+   String es = "";
+        
     /** Creates new form perfilAmigo */
     public perfilAmigo(String e) {
         initComponents();
 
                  
         Facebook fb = new Facebook();
+  
+        es=e;
         
-        
-    infoPerfil.setText(fb.iPerfil(cc));
+    infoPerfil.setText(fb.iPerfil(e));
        
-    if(!poster.getText().equals(""))
-         poster.setText(fb.showComment(cc));
+    //if(!poster.getText().equals(""))
+         poster.setText(fb.showComment(e));
       
     
     }
@@ -52,9 +54,12 @@ public class perfilAmigo extends javax.swing.JFrame {
         post = new javax.swing.JEditorPane();
         poster = new java.awt.TextArea();
         ClickPost = new javax.swing.JButton();
+        miperfil = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(750, 750));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         CuadroFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/silueta.jpg"))); // NOI18N
@@ -105,6 +110,15 @@ public class perfilAmigo extends javax.swing.JFrame {
         getContentPane().add(ClickPost);
         ClickPost.setBounds(630, 160, 70, 23);
 
+        miperfil.setText("Mi perfil");
+        miperfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                miperfilMouseReleased(evt);
+            }
+        });
+        getContentPane().add(miperfil);
+        miperfil.setBounds(70, 530, 69, 23);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/social-network-1.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
@@ -132,21 +146,31 @@ public class perfilAmigo extends javax.swing.JFrame {
         
           if(poster.getText().equals("")){
         
-        String   ff ="\n"+ post.getText()+"\n"+c.getTime()+"\n\n";
-        fb.addComment(cc, ff);
-        poster.setText(fb.showComment(cc));
+        String   ff = fb.getNombre(Perfil.correo) +" comento:"+"\n"+ post.getText()+"\n"+c.getTime()+"\n\n";
+        fb.addComment(es, ff);
+        poster.setText(fb.showComment(es));
         //post.setText("");
    
           }else{
         String pp =poster.getText();
-        String   ff =post.getText()+"\n"+c.getTime()+"\n\n"+pp;
-        fb.addComment(Perfil.correo, ff);
-        poster.setText(fb.showComment(Perfil.correo));
+        String   ff =fb.getNombre(Perfil.correo) +" comento: "+"\n"+post.getText()+"\n"+c.getTime()+"\n\n"+pp;
+        fb.addComment(es, ff);
+        poster.setText(fb.showComment(es));
              
           }
-      
+       post.setText("");
         
     }//GEN-LAST:event_ClickPostMouseReleased
+
+    private void miperfilMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miperfilMouseReleased
+
+        dispose();
+          Perfil pf = new Perfil();
+        pf.setVisible(true);
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_miperfilMouseReleased
 
     /**
      * @param args the command line arguments
@@ -166,6 +190,7 @@ public class perfilAmigo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JButton miperfil;
     private javax.swing.JEditorPane post;
     private java.awt.TextArea poster;
     // End of variables declaration//GEN-END:variables

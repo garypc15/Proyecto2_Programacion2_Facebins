@@ -147,9 +147,6 @@
     </Container>
     <Component class="javax.swing.JLabel" name="CuadroFoto">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/silueta.jpg"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="cuadrofoto"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
@@ -326,7 +323,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="930" height="690"/>
+          <AbsoluteConstraints x="10" y="10" width="930" height="690"/>
         </Constraint>
       </Constraints>
     </Component>

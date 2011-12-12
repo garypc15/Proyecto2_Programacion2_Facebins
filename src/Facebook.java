@@ -64,6 +64,7 @@ public class Facebook {
              
             }
             rafs.close();
+          
       
         }catch(Exception q ){
             
@@ -71,8 +72,12 @@ public class Facebook {
         }
         return cont;
    }
-private String soliAmigos(String e){
-       try{
+public String[] soliAmigos(String e){
+    String amigos[]=new String[this.contAmigos(e)];  
+      int c = 0;
+    try{
+          
+            
             RandomAccessFile rafs = new RandomAccessFile(path()+e+"\\"+"manageFriends.fbn","rw");
             rafs.seek(0) ;
             while(rafs.getFilePointer()<rafs.length()){
@@ -83,37 +88,39 @@ private String soliAmigos(String e){
                boolean decision = rafs.readBoolean();
                boolean qenvio = rafs.readBoolean();
                if(amigo==false && decision==false && qenvio==false){
-                  rafs.close();
-                   return cef;
+              amigos[c]=cef;
+              c+=1;
+                 //  rafs.close();
+               //    return cef;
                    
                }
                 
              
             }
              rafs.close();
-      
+      return amigos;
         }catch(Exception q ){
             
         }
-        return "";
-   }   
-   public String[] listaAmigos(String e){
-    
-       String amigos[]=new String[this.contAmigos(e)];
-            
-        for(int x = 0 ; x < amigos.length;x++){
-            amigos[x]=this.soliAmigos(e);
-        }
-       
         return amigos;
-}
-   public String[] misAmigos(String e){
-       String amigos[]= new String[this.contAmigos2(e)];
-       for(int x = 0 ; x < amigos.length;x++){
-           amigos[x]=this.losAmigos(e);
-       }
-       return amigos;
-   }
+   }   
+//   public String[] listaAmigos(String e){
+//    
+//       String amigos[]=new String[this.contAmigos(e)];
+//            
+//        for(int x = 0 ; x < amigos.length;x++){
+//            amigos[x]=this.soliAmigos(e);
+//        }
+//       
+//        return amigos;
+//}
+//   public String[] misAmigos(String e){
+//       String amigos[]= new String[this.contAmigos2(e)];
+//       for(int x = 0 ; x < amigos.length;x++){
+//           amigos[x]=this.losAmigos(e);
+//       }
+//       return amigos;
+//   }
    
    public boolean seekFriend(String e,String fe){
         try{
@@ -123,12 +130,13 @@ private String soliAmigos(String e){
                 String cef=rafs.readUTF();
                 rafs.readBoolean();
                 rafs.readBoolean();
+                rafs.readBoolean();
                 if(cef.equals(fe)){
-                        rafs.close();
+                     rafs.close();
                     return false;
                 }
             }
-            rafs.close();
+          
         }catch(Exception q ){
             
             return true;
@@ -138,6 +146,7 @@ private String soliAmigos(String e){
    
    
    private int contAmigos2(String mimail){
+       
        int cont2=0;
      try{
             RandomAccessFile rafs = new RandomAccessFile(path()+mimail+"\\"+"manageFriends.fbn","rw");
@@ -148,12 +157,14 @@ private String soliAmigos(String e){
                boolean decision = rafs.readBoolean();
                        rafs.readBoolean();         
                  if(amigo==true && decision==true){
-                   cont2+=1;
+                
+                     cont2+=1;
                }
                
                  
             }
-           rafs.close();
+            rafs.close();
+          
             return cont2;
         }catch(Exception q ){
             
@@ -161,8 +172,10 @@ private String soliAmigos(String e){
      return cont2;
        
    } 
-private String losAmigos(String e){
-       try{
+public String[] losAmigos(String e){
+      String amigos[]= new String[this.contAmigos2(e)];
+       int cont2=0;
+    try{
             RandomAccessFile rafs = new RandomAccessFile(path()+e+"\\"+"manageFriends.fbn","rw");
             rafs.seek(0) ;
             while(rafs.getFilePointer()<rafs.length()){
@@ -173,20 +186,22 @@ private String losAmigos(String e){
                boolean decision = rafs.readBoolean();
                rafs.readBoolean();
                if(amigo==true && decision==true){
-                  rafs.close();
-      
-                   return cef;
+                     amigos[cont2]=cef;
+                     cont2+=1;
+     // rafs.close();
+       //            return cef;
                    
                }
                 
              
             }
-           rafs.close();
+            return amigos;
+          
              
         }catch(Exception q ){
             
         }
-        return "";
+        return amigos;
    }   
    
    
@@ -203,7 +218,7 @@ private String losAmigos(String e){
         return path;
     }
     
-    public boolean addUser(String n, String p,char g,long d,String c,int t,String x){
+    public boolean addUser(String n, String p,char g,long d,String c,int t){
         try{
             RandomAccessFile rafau= new RandomAccessFile("gerencia.fbn","rw");
             File carpeta = new File(c);
@@ -214,7 +229,7 @@ private String losAmigos(String e){
                 RandomAccessFile rafaud= new RandomAccessFile(path()+c+"\\"+"profile.fbn","rw");
                 RandomAccessFile rafaf= new RandomAccessFile(path()+c+"\\"+"manageFriends.fbn","rw");
                 RandomAccessFile raff = new RandomAccessFile(path()+c+"\\"+"foto.fbn","rw");
-                RandomAccessFile rafp = new RandomAccessFile(path()+c+"\\"+"fotop.fbn","rw");
+                RandomAccessFile rafp = new RandomAccessFile(path()+c+"\\"+"foto.fbn","rw");
                 rafau.seek(rafau.length());
     ///correo, pass,activo gerencia
                 rafau.writeUTF(c);
@@ -227,12 +242,12 @@ private String losAmigos(String e){
                     rafaud.writeInt(t);
                     Date dc= new Date();
                     rafaud.writeLong(dc.getTime());
-                    rafp.writeUTF(x);
+                    rafp.writeUTF("/silueta.jpg");
                         
-               rafaud.close();
+                rafaud.close();
                 rafaf.close();
-                 raff.close();
-                  rafp.close();
+                raff.close();
+                rafp.close();
                     return true;
                 }
                 
@@ -272,8 +287,7 @@ private String losAmigos(String e){
         if(rafau.readUTF().equals(e)){
                 rafau.readUTF();
                 rafau.writeBoolean(false);
-              //  this.closec(e);
-                borrarDirectorio(e);
+              borrarDirectorio(e);
                 return true;
         }
         rafau.readUTF();
@@ -312,7 +326,7 @@ private String losAmigos(String e){
             return info;
             
         }catch(Exception a){
-            
+            a.printStackTrace();
         }
         
         return "-";
@@ -320,7 +334,7 @@ private String losAmigos(String e){
     public String bPerfil(String e){
         try{
              RandomAccessFile rafaud= new RandomAccessFile(path()+e+"\\"+"profile.fbn","rw");
-        
+    
                 String name =rafaud.readUTF();
                 char s = rafaud.readChar();
                 rafaud.readLong();
@@ -334,15 +348,15 @@ private String losAmigos(String e){
                     +"Sexo: "+s+"\n\n"
                     +"Fecha de Ingreso a Facebins: "+c.get(Calendar.DATE)+" / "+(c.get(Calendar.MONTH))+" / "+c.get(Calendar.YEAR)+"\n\n";
                 
-                rafaud.readUTF();
+                //rafaud.readUTF();
                 
-              rafaud.close();
+            rafaud.close();
 //                
                 return info;
            
            
         }catch(Exception as){
-             
+           
              
         }
         return ":";
@@ -367,7 +381,7 @@ private String losAmigos(String e){
          
             
             rafa.close();
-            rafp.close();
+           rafp.close();
             return true;
             }
             
@@ -439,39 +453,49 @@ borrarDirectorio(ficheros[x].toString());
 
 
   
-//  public String getNombre(String e){
-//      try
-//      {
-//          RandomAccessFile ram= new RandomAccessFile(path()+e+"\\"+"profile.fbn","rw");
-//          String name = ram.readUTF();
-//          
-//          ram.close();
-//          return name;
-//      }
-//      catch(Exception q)
-//      {
-//          
-//      }
-//      return "";
-//  }
+  public String getNombre(String e){
+      try
+      {
+          RandomAccessFile ram= new RandomAccessFile(path()+e+"\\"+"profile.fbn","rw");
+          String name = ram.readUTF();
+          
+          ram.close();
+          return name;
+      }
+      catch(Exception q)
+      {
+          
+      }
+      return "";
+  }
   public void aceptarRequest(String e ,String c){
       try{
          RandomAccessFile rafa = new RandomAccessFile(path()+e+"\\"+"manageFriends.fbn","rw");
            RandomAccessFile raf = new RandomAccessFile(path()+c+"\\"+"manageFriends.fbn","rw");
            
-           rafa.readUTF();
+           while(rafa.getFilePointer()<rafa.length()){
+           if(rafa.readUTF().equals(e)){
            rafa.writeBoolean(true);
            rafa.writeBoolean(true);
            rafa.readBoolean();
-      
-           raf.readUTF();
+           }
+            rafa.writeBoolean(true);
+           rafa.writeBoolean(true);
+           rafa.readBoolean();
+           }
+           while(raf.getFilePointer()<raf.length()){
+           if(raf.readUTF().equals(c)){
            raf.writeBoolean(true);
            raf.writeBoolean(true);
            raf.readBoolean();
+           }
+              raf.writeBoolean(true);
+           raf.writeBoolean(true);
+           raf.readBoolean();
            
-           
-        rafa.close();
-         raf.close();
+           }
+       rafa.close();
+       raf.close();
            
         //   return true;
       }catch(Exception g){
@@ -485,19 +509,23 @@ borrarDirectorio(ficheros[x].toString());
          RandomAccessFile rafa = new RandomAccessFile(path()+e+"\\"+"manageFriends.fbn","rw");
            RandomAccessFile raf = new RandomAccessFile(path()+c+"\\"+"manageFriends.fbn","rw");
            
-           rafa.readUTF();
+         while(rafa.getFilePointer()<rafa.length()){
+           if(rafa.readUTF().equals(e)){
            rafa.writeBoolean(false);
            rafa.writeBoolean(true);
            rafa.readBoolean();
-           
-           
-           raf.readUTF();
+           }
+         }
+          while(raf.getFilePointer()<raf.length()){
+           if(raf.readUTF().equals(c)){
            raf.writeBoolean(false);
            raf.writeBoolean(true);
            raf.readBoolean();
+           }
+          }
       
-        rafa.close();
-          raf.close();
+            rafa.close();
+            raf.close();
            
            //return true;
       }catch(Exception g){
@@ -506,6 +534,45 @@ borrarDirectorio(ficheros[x].toString());
       //return false;
   }
   
+  public boolean confirmFriends(String cpropip,String camigo, boolean decicion ){
+        try{
+            
+          //  if(!seekFriend(cpropip, camigo)){
+                RandomAccessFile rafa = new RandomAccessFile(path()+camigo+"\\"+"manageFriends.fbn","rw");
+                RandomAccessFile rafp = new RandomAccessFile(path()+cpropip+"\\"+"manageFriends.fbn","rw");
+            while(rafa.getFilePointer()<rafa.length()){
+                String ecom=rafa.readUTF();
+                long pos=rafa.getFilePointer();
+                rafa.readBoolean();
+                rafa.readBoolean();
+                rafa.readBoolean();
+                if(ecom.equalsIgnoreCase(cpropip)){
+                    rafa.seek(pos);
+                    rafa.writeBoolean(decicion);
+                    rafa.writeBoolean(true);
+                    rafa.readBoolean();
+                }
+            }
+            while(rafp.getFilePointer()<rafp.length()){
+                String ecom=rafp.readUTF();
+                long pos=rafp.getFilePointer();
+                rafp.readBoolean();
+                rafp.readBoolean();
+                rafp.readBoolean();
+                if(ecom.equalsIgnoreCase(camigo)){
+                    rafp.seek(pos);
+                    rafp.writeBoolean(decicion);
+                    rafp.writeBoolean(true);
+                    rafp.readBoolean();
+                }
+         //   }
+            return true;
+            }
+        }catch(Exception e){
+                        return false;
+                    }
+        return false;
+    }
     
     public boolean login(String e,String p){
         try{

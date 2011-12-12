@@ -24,38 +24,31 @@ public class FriendRequest extends javax.swing.JFrame {
     Facebook fb = new Facebook();
    
     login lg = new login();
-   // String array[]= new String[fb.contAmigos(pf.correo)];
-     
+  
     
     infoBusqueda fi = new infoBusqueda();
- //   Iterator i = fi.al.iterator();
+
        
     /** Creates new form FriendRequest */
     public FriendRequest() {
         initComponents();
 
-        //    String aka []={"aka47","aka2"};
-  // fb.arrAmigos(Perfil.correo);
-
-  //      System.out.println(array.length);
-   
-     //   String
-                
-      String am[]=  fb.listaAmigos(Perfil.correo);
-            //Object ia[]=fi.al.toArray();
-        DefaultListModel modelo = new DefaultListModel();
+         
+     String am[]=  fb.soliAmigos(lg.correo);
+DefaultListModel modelo = new DefaultListModel();
 
         try{
             for(int i=0;i<am.length;i++ ){
                 
             modelo.add(i,am[i]);
             }
-      
-            
-        lista.setModel(modelo);      
-        }catch(Exception s ){
-            
         }
+      catch(Exception qq){
+          
+      }
+            
+        lista.setModel(modelo);
+        
     }
     
     
@@ -75,10 +68,11 @@ public class FriendRequest extends javax.swing.JFrame {
         aceptar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista = new javax.swing.JList();
-        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        rechazo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(500, 500));
+        setMinimumSize(new java.awt.Dimension(480, 460));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -89,8 +83,13 @@ public class FriendRequest extends javax.swing.JFrame {
         jLabel2.setBounds(140, 0, 260, 70);
 
         rechazar.setText("Rechazar");
+        rechazar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                rechazarMouseReleased(evt);
+            }
+        });
         getContentPane().add(rechazar);
-        rechazar.setBounds(250, 190, 90, 23);
+        rechazar.setBounds(300, 190, 90, 23);
 
         aceptar.setText("Aceptar");
         aceptar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,43 +98,120 @@ public class FriendRequest extends javax.swing.JFrame {
             }
         });
         getContentPane().add(aceptar);
-        aceptar.setBounds(250, 110, 90, 23);
+        aceptar.setBounds(300, 110, 90, 23);
 
+        lista.setBackground(new java.awt.Color(51, 51, 51));
+        lista.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lista.setForeground(new java.awt.Color(0, 255, 153));
         lista.setModel(lista.getModel());
         jScrollPane1.setViewportView(lista);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(60, 100, 150, 190);
+        jScrollPane1.setBounds(90, 90, 150, 190);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/social-network-1.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 480, 430);
+        jButton1.setText("Mi Perfil");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton1MouseReleased(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(180, 350, 120, 23);
+
+        rechazo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/social-network-1.jpg"))); // NOI18N
+        rechazo.setText("jLabel1");
+        getContentPane().add(rechazo);
+        rechazo.setBounds(0, 0, 480, 430);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aceptarMouseReleased
 
-        
-       if(lista.getSelectedIndex()>1){
+          if(lista.getSelectedIndex()>1){
             JOptionPane.showMessageDialog(this, "Seleccione solo un Correo","ERROR",0);
             return;
+       
+      
        }else{ 
            
          String nom = (String) this.lista.getSelectedValue();
-      
-         fb.aceptarRequest(Perfil.correo, nom);
+         System.out.println(nom);
+           
+    if(fb.confirmFriends(lg.correo, nom,true)){
         
         DefaultListModel modelo = (DefaultListModel) lista.getModel();
         int index = lista.getSelectedIndex();
         modelo.remove( index );
-      
+        JOptionPane.showMessageDialog(this, "Solicitud Aceptada","!",1);
+   
+    
+        String amm[]=  fb.losAmigos(Perfil.correo);
+       DefaultListModel model = new DefaultListModel();
+            for(int i=0;i<amm.length;i++ ){
+           model.add(i,amm[i]);
+           }
+     
+
+    
+    }else{
+        System.out.println("false");
+    }
         
        }
+       
+      
         
         // TODO add your handling code here:
     }//GEN-LAST:event_aceptarMouseReleased
+
+    private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
+        
+       String amm[]=  fb.losAmigos(lg.correo);
+          
+       DefaultListModel model = new DefaultListModel();
+                   for(int i=0;i<amm.length;i++ ){
+                
+           model.add(i,amm[i]);
+           }
+    
+        
+        dispose();
+            pf.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseReleased
+
+    private void rechazarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechazarMouseReleased
+
+          if(lista.getSelectedIndex()>1){
+            JOptionPane.showMessageDialog(this, "Seleccione solo un Correo","ERROR",0);
+            return;
+       
+          }else{ 
+           
+         String nom = (String) this.lista.getSelectedValue();
+      
+      if( fb.confirmFriends(lg.correo, nom,false)){
+        
+        DefaultListModel modelo = (DefaultListModel) lista.getModel();
+        int index = lista.getSelectedIndex();
+        modelo.remove( index );
+          JOptionPane.showMessageDialog(this, "Solicitud Rechazada","!",0);
+      
+          
+            String amm[]=  fb.losAmigos(Perfil.correo);
+          
+       DefaultListModel model = new DefaultListModel();
+                   for(int i=0;i<amm.length;i++ ){
+                
+           model.add(i,amm[i]);
+           }
+      }
+          }
+          
+        
+       // TODO add your handling code here:
+    }//GEN-LAST:event_rechazarMouseReleased
 
     /**
      * @param args the command line arguments
@@ -153,10 +229,11 @@ public class FriendRequest extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList lista;
     private javax.swing.JButton rechazar;
+    private javax.swing.JLabel rechazo;
     // End of variables declaration//GEN-END:variables
 }

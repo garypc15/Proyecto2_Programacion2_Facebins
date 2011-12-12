@@ -48,7 +48,7 @@ public class Perfil extends javax.swing.JFrame {
         poster.setText(fb.showComment(correo));
         // fb.closePost(correo);
  
-       String amm[]=  fb.misAmigos(Perfil.correo);
+       String amm[]=  fb.losAmigos(Perfil.correo);
           
        DefaultListModel modelo = new DefaultListModel();
                    for(int i=0;i<amm.length;i++ ){
@@ -174,7 +174,6 @@ return null;
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(30, 340, 210, 160);
 
-        CuadroFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/silueta.jpg"))); // NOI18N
         CuadroFoto.setText("cuadrofoto");
         CuadroFoto.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(51, 255, 153)));
         getContentPane().add(CuadroFoto);
@@ -223,14 +222,14 @@ return null;
         poster.setBounds(300, 250, 410, 400);
 
         listAmigos.setBackground(new java.awt.Color(102, 102, 102));
-        listAmigos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        listAmigos.setFont(new java.awt.Font("Tahoma", 1, 12));
         listAmigos.setForeground(new java.awt.Color(0, 255, 153));
         jScrollPane2.setViewportView(listAmigos);
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(780, 150, 120, 240);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel4.setForeground(new java.awt.Color(0, 255, 153));
         jLabel4.setText("MIS AMIGOS");
         getContentPane().add(jLabel4);
@@ -253,7 +252,7 @@ return null;
             }
         });
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 930, 690);
+        jLabel1.setBounds(10, 10, 930, 690);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -273,14 +272,23 @@ return null;
     }//GEN-LAST:event_LogOutMouseReleased
 
     private void BotFotoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotFotoMouseReleased
-ImageIcon foto= this.getFoto();
+//ImageIcon foto= this.getFoto();
+//
+//if ( foto!= null){
+//this.CuadroFoto.setIcon(foto);
+//
+//} else {
+//JOptionPane.showMessageDialog(this, "Ocurrio un error");
+//}     
+//        JFileChooser chooser = new JFileChooser();
+//        String pp =chooser.getSelectedFile().getAbsolutePath(); 
 
-if ( foto!= null){
-this.CuadroFoto.setIcon(foto);
-
-} else {
-JOptionPane.showMessageDialog(this, "Ocurrio un error");
-}        // TODO add your handling code here:
+      //  this.changeImage(correo, pp);
+        
+        NewJFrame mj = new NewJFrame();
+        mj.setVisible(true);
+       //  this.changeImage(correo, NewJFrame.pfot);
+        // TODO add your handling code here:
     }//GEN-LAST:event_BotFotoMouseReleased
 
     private void SolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SolicitudesActionPerformed
@@ -306,14 +314,14 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
         Calendar c = Calendar.getInstance();
         
         if(poster.getText().equals("")){
-        String   ff =post.getText()+"\n"+c.getTime()+"\n\n";
+        String   ff =fb.getNombre(Perfil.correo)  +" comento:"+"\n"+post.getText()+"\n"+c.getTime()+"\n\n";
         fb.addComment(correo, ff);
         poster.setText(fb.showComment(correo));
        
         }else{
         
         String pp =poster.getText();
-        String   ff = post.getText()+"\n"+c.getTime()+"\n\n"+pp;
+        String   ff =fb.getNombre(Perfil.correo)  +" comento:"+"\n"+ post.getText()+"\n"+c.getTime()+"\n\n"+pp;
         fb.addComment(correo, ff);
         poster.setText(fb.showComment(correo));
        
@@ -343,14 +351,25 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
 
     private void requestMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestMouseReleased
 
+           Facebook fb = new Facebook ();
+           login lg = new login();
+         String am[]=  fb.soliAmigos(lg.correo);
+         
+        DefaultListModel model = new DefaultListModel();
+
+        try{
+            for(int i=0;i<am.length;i++ ){
+                
+            model.add(i,am[i]);
+            }
+        }catch(Exception q ){
+            
+        }
+        
         FriendRequest amiguito = new FriendRequest();
        
-        Facebook fb = new Facebook();
-//        fb.arrAmigos(Perfil.correo);
-//         String names []=new String[fb.contAmigos(Perfil.correo)];
-//           
         amiguito.setVisible(true);
-        
+        dispose();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_requestMouseReleased
@@ -367,11 +386,20 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
     }//GEN-LAST:event_jButton3MouseReleased
 
     private void verPerfilMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verPerfilMouseReleased
-
+   if(listAmigos.getSelectedIndex()>1){
+            JOptionPane.showMessageDialog(this, "Seleccione UN Correo","ERROR",0);
+            return;
+   }
+//      if(listAmigos.getSelectedIndex()<1)    {
+//          
+//             JOptionPane.showMessageDialog(this, "No tenes Amiguitos :( ","ERROR",0);
+//            return;
+//            
+//   }
   String am =(String) listAmigos.getSelectedValue();
-  String ma =(String) listAmigos.getSelectedValue();
+ 
   
-  perfilAmigo.cc=am;
+ 
   perfilAmigo pa = new perfilAmigo(am);
         
         pa.setVisible(true);
@@ -397,17 +425,32 @@ JOptionPane.showMessageDialog(this, "Ocurrio un error");
     public void setImage(String c){
         Facebook fb = new Facebook();
         try{
-            RandomAccessFile raff= new RandomAccessFile(fb.path()+c+"\\"+"fotop.fbn","rw");
+            RandomAccessFile raff= new RandomAccessFile(fb.path()+c+"\\"+"foto.fbn","rw");
             
             String path=raff.readUTF();
             System.out.println(path);
-            CuadroFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(path))); // NOI18N
-      
+           CuadroFoto.setIcon(new javax.swing.ImageIcon(path));
         }catch(Exception ex){
             
         }
         
     }
+    public void changeImage(String c,String i){
+        Facebook fb = new Facebook();
+        try{
+            RandomAccessFile raff= new RandomAccessFile(fb.path()+c+"\\"+"foto.fbn","rw");
+            raff.seek(0);
+            raff.writeUTF(i);
+            raff.seek(0);
+            String path=raff.readUTF();
+            System.out.println(path);
+            CuadroFoto.setIcon(new javax.swing.ImageIcon(path));
+        }catch(Exception ex){
+            
+        }
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotFoto;
     private javax.swing.JButton ClickPost;

@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class infoBusqueda extends javax.swing.JFrame {
     /** Creates new form infoBusqueda */
    
-     static ArrayList al = new ArrayList();
+   
      
     public infoBusqueda() {
         initComponents();
@@ -49,7 +49,6 @@ public class infoBusqueda extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 300));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -103,13 +102,9 @@ public class infoBusqueda extends javax.swing.JFrame {
         
          
          if(fb.addFriends(pf.correo,fbi.mail)){
-//              String  array[]= new String[fb.contAmigos(Perfil.correo)];
-            al.add(pf.correo);    
-             
-             //fb.arrAmigos(fbi.mail);
-//    String names []=new String[fb.contAmigos(Perfil.correo)];           
-            //this.al.add(pf.correo);
+
               JOptionPane.showMessageDialog(this, "Solicitud Envianda", "FaceBins", 1);
+              
          }
         
         
