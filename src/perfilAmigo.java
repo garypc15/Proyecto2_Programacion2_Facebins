@@ -62,11 +62,10 @@ public class perfilAmigo extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        CuadroFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/silueta.jpg"))); // NOI18N
         CuadroFoto.setText("cuadrofoto");
         CuadroFoto.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(51, 255, 153)));
         getContentPane().add(CuadroFoto);
-        CuadroFoto.setBounds(30, 60, 160, 170);
+        CuadroFoto.setBounds(40, 60, 160, 170);
 
         infoPerfil.setBackground(new java.awt.Color(102, 102, 102));
         infoPerfil.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(51, 255, 102)));

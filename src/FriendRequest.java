@@ -1,6 +1,7 @@
 
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
@@ -25,6 +26,7 @@ public class FriendRequest extends javax.swing.JFrame {
    
     login lg = new login();
   
+    static String am="";
     
     infoBusqueda fi = new infoBusqueda();
 
@@ -148,17 +150,27 @@ DefaultListModel modelo = new DefaultListModel();
     
         String amm[]=  fb.losAmigos(Perfil.correo);
        DefaultListModel model = new DefaultListModel();
-            for(int i=0;i<amm.length;i++ ){
-           model.add(i,amm[i]);
-           }
+       
      
-
+ JFileChooser fileChooser = new JFileChooser();       
+       int result = fileChooser.showOpenDialog(null);  
+        if ( result == JFileChooser.APPROVE_OPTION ){            
+              am = fileChooser.getSelectedFile().getName();                
+                model.addElement(am);                              
+            }
+//            for(int i=0;i<amm.length;i++ ){
+//           model.add(i,amm[i]);
+//           }
     
     }else{
         System.out.println("false");
     }
         
        }
+          
+
+       
+
        
       
         
