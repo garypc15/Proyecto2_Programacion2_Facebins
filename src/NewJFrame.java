@@ -1,6 +1,7 @@
 
 import java.io.File;
 import java.util.StringTokenizer;
+import javax.swing.JOptionPane;
 
 /*
  * To change this template, choose Tools | Templates
@@ -79,7 +80,11 @@ private void chooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         pf.changeImage(Perfil.correo, path);
         System.out.println(path);
         dispose();
+    }else{
+      JOptionPane.showMessageDialog(this, "Ocurrio un error");
     }
+    
+    
 //    if (chooser.//APROVE_OPTION()){
 //   
 //}

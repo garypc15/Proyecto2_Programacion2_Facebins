@@ -166,7 +166,7 @@ public class ModificarPerfil extends javax.swing.JFrame {
          
          if(ac.equals("Desactivada")){
              
-           
+           fb.cerrar(Perfil.correo);
                  if(fb.desactivarCuenta(Perfil.correo)){
                     dispose(); 
                      System.out.println("BORRANDO...");

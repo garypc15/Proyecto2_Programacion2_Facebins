@@ -104,23 +104,7 @@ public String[] soliAmigos(String e){
         }
         return amigos;
    }   
-//   public String[] listaAmigos(String e){
-//    
-//       String amigos[]=new String[this.contAmigos(e)];
-//            
-//        for(int x = 0 ; x < amigos.length;x++){
-//            amigos[x]=this.soliAmigos(e);
-//        }
-//       
-//        return amigos;
-//}
-//   public String[] misAmigos(String e){
-//       String amigos[]= new String[this.contAmigos2(e)];
-//       for(int x = 0 ; x < amigos.length;x++){
-//           amigos[x]=this.losAmigos(e);
-//       }
-//       return amigos;
-//   }
+
    
    public boolean seekFriend(String e,String fe){
         try{
@@ -195,6 +179,7 @@ public String[] losAmigos(String e){
                 
              
             }
+            rafs.close();
             return amigos;
           
              
@@ -306,7 +291,7 @@ public String[] losAmigos(String e){
     public String iPerfil(String e){
         try{
             RandomAccessFile rafaud= new RandomAccessFile(path()+e+"\\"+"profile.fbn","rw");
-            
+            String m = null;
             String name =rafaud.readUTF();
             char s = rafaud.readChar();
            long comp= rafaud.readLong();
@@ -316,9 +301,14 @@ public String[] losAmigos(String e){
             // Date d = new Date(rafaud.readLong());
             int te=rafaud.readInt();
             rafaud.readLong();
+            if(s=='M'){
+                m="Masculino";
+            }else{
+                m="Femenino";
+            }
             
             String info = "Nombre: "+name+"\n\n"
-                    +"Sexo: "+s+"\n\n"
+                    +"Sexo: "+m+"\n\n"
                     +"Birthday: "+c.get(Calendar.DATE)+" / "+(c.get(Calendar.MONTH))+" / "+c.get(Calendar.YEAR)+"\n\n"
                     +"Telefono: "+te+"\n\n";
           
@@ -335,6 +325,8 @@ public String[] losAmigos(String e){
         try{
              RandomAccessFile rafaud= new RandomAccessFile(path()+e+"\\"+"profile.fbn","rw");
     
+             String m = null;
+             
                 String name =rafaud.readUTF();
                 char s = rafaud.readChar();
                 rafaud.readLong();
@@ -344,8 +336,15 @@ public String[] losAmigos(String e){
                 Calendar c=Calendar.getInstance();
                 c.setTime(new Date(comp2));
         
+                  if(s=='M'){
+                m="Masculino";
+            }else{
+                m="Femenino";
+            }
+            
+                
                 String info="Nombre: "+name+"\n\n"
-                    +"Sexo: "+s+"\n\n"
+                    +"Sexo: "+m+"\n\n"
                     +"Fecha de Ingreso a Facebins: "+c.get(Calendar.DATE)+" / "+(c.get(Calendar.MONTH))+" / "+c.get(Calendar.YEAR)+"\n\n";
                 
                 //rafaud.readUTF();
@@ -458,6 +457,11 @@ borrarDirectorio(ficheros[x].toString());
       {
           RandomAccessFile ram= new RandomAccessFile(path()+e+"\\"+"profile.fbn","rw");
           String name = ram.readUTF();
+          ram.readChar();
+          ram.readLong();
+          ram.readInt();
+          ram.readLong();
+          ram.readUTF();
           
           ram.close();
           return name;
@@ -565,13 +569,16 @@ borrarDirectorio(ficheros[x].toString());
                     rafp.writeBoolean(true);
                     rafp.readBoolean();
                 }
+                }
          //   }
+                rafa.close();
+                rafp.close();
             return true;
             }
-        }catch(Exception e){
+        catch(Exception e){
                         return false;
                     }
-        return false;
+        
     }
     
     public boolean login(String e,String p){
@@ -598,25 +605,17 @@ borrarDirectorio(ficheros[x].toString());
         return false;
     }
 
-    private void closec(String e){
-        try{     
-                RandomAccessFile pp   = new RandomAccessFile(path()+e+"\\"+"pp.fbn","rw");
-                RandomAccessFile rafaud= new RandomAccessFile(path()+e+"\\"+"profile.fbn","rw");
-                RandomAccessFile rafaf= new RandomAccessFile(path()+e+"\\"+"manageFriends.fbn","rw");
-                RandomAccessFile raff = new RandomAccessFile(path()+e+"\\"+"foto.fbn","rw");
-                RandomAccessFile rafp = new RandomAccessFile(path()+e+"\\"+"fotop.fbn","rw");
-                
-                pp.close();
-                rafaud.close();
-                rafaf.close();
-                raff.close();
-                rafp.close();
-                
-        }catch(Exception xx){
-        
-    }
-    }
-
+  public void cerrar(String e ){
+      try{  
+      RandomAccessFile rafc = new RandomAccessFile(path()+e+"\\"+"profile.fbn","rw");
+      RandomAccessFile pp   = new RandomAccessFile(path()+e+"\\"+"pp.fbn","rw");
+      
+      rafc.close();
+      pp.close();
+      }catch(Exception a){
+          
+      } 
+  }
 
 }
     

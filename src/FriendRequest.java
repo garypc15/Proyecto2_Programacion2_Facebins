@@ -30,6 +30,7 @@ public class FriendRequest extends javax.swing.JFrame {
     
     infoBusqueda fi = new infoBusqueda();
 
+    static String ami[]=null;
        
     /** Creates new form FriendRequest */
     public FriendRequest() {
@@ -148,16 +149,14 @@ DefaultListModel modelo = new DefaultListModel();
         JOptionPane.showMessageDialog(this, "Solicitud Aceptada","!",1);
    
     
-        String amm[]=  fb.losAmigos(Perfil.correo);
+         ami=  fb.losAmigos(Perfil.correo);
        DefaultListModel model = new DefaultListModel();
-       
-     
- JFileChooser fileChooser = new JFileChooser();       
-       int result = fileChooser.showOpenDialog(null);  
-        if ( result == JFileChooser.APPROVE_OPTION ){            
-              am = fileChooser.getSelectedFile().getName();                
-                model.addElement(am);                              
-            }
+                for(int i=0;i<ami.length;i++ ){
+                    
+                    model.add(i,ami[i]);
+ 
+      }
+ 
 //            for(int i=0;i<amm.length;i++ ){
 //           model.add(i,amm[i]);
 //           }
@@ -179,13 +178,13 @@ DefaultListModel modelo = new DefaultListModel();
 
     private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
         
-       String amm[]=  fb.losAmigos(lg.correo);
-          
-       DefaultListModel model = new DefaultListModel();
-                   for(int i=0;i<amm.length;i++ ){
-                
-           model.add(i,amm[i]);
-           }
+//       String amm[]=  fb.losAmigos(lg.correo);
+//          
+//       DefaultListModel model = new DefaultListModel();
+//                   for(int i=0;i<amm.length;i++ ){
+//                
+//           model.add(i,amm[i]);
+//           }
     
         
         dispose();
@@ -207,17 +206,18 @@ DefaultListModel modelo = new DefaultListModel();
         
         DefaultListModel modelo = (DefaultListModel) lista.getModel();
         int index = lista.getSelectedIndex();
+        
         modelo.remove( index );
           JOptionPane.showMessageDialog(this, "Solicitud Rechazada","!",0);
       
           
-            String amm[]=  fb.losAmigos(Perfil.correo);
-          
-       DefaultListModel model = new DefaultListModel();
-                   for(int i=0;i<amm.length;i++ ){
-                
-           model.add(i,amm[i]);
-           }
+//            String amm[]=  fb.losAmigos(Perfil.correo);
+//          
+//       DefaultListModel model = new DefaultListModel();
+//                   for(int i=0;i<amm.length;i++ ){
+//                
+//           model.add(i,amm[i]);
+//           }
       }
           }
           

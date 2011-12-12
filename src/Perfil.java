@@ -48,9 +48,10 @@ public class Perfil extends javax.swing.JFrame {
         poster.setText(fb.showComment(correo));
         // fb.closePost(correo);
  
-       String amm[]=  fb.losAmigos(Perfil.correo);
-          
-       DefaultListModel modelo = new DefaultListModel();
+       String amm[]=  fb.losAmigos(correo);
+       
+       DefaultListModel modelo =new DefaultListModel();
+       
                    for(int i=0;i<amm.length;i++ ){
                 
            modelo.add(i,amm[i]);
@@ -252,7 +253,7 @@ return null;
             }
         });
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 10, 930, 690);
+        jLabel1.setBounds(0, 0, 930, 690);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -375,13 +376,14 @@ return null;
     }//GEN-LAST:event_requestMouseReleased
 
     private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
-
+Facebook fb = new Facebook();
         
         ModificarPerfil mp = new ModificarPerfil();
         
         mp.setVisible(true);
-        
+         fb.cerrar(correo);
         this.dispose();
+       
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseReleased
 
@@ -390,12 +392,7 @@ return null;
             JOptionPane.showMessageDialog(this, "Seleccione UN Correo","ERROR",0);
             return;
    }
-//      if(listAmigos.getSelectedIndex()<1)    {
-//          
-//             JOptionPane.showMessageDialog(this, "No tenes Amiguitos :( ","ERROR",0);
-//            return;
-//            
-//   }
+
   String am =(String) listAmigos.getSelectedValue();
  
   
@@ -430,6 +427,7 @@ return null;
             String path=raff.readUTF();
             System.out.println(path);
            CuadroFoto.setIcon(new javax.swing.ImageIcon(path));
+           raff.close();
         }catch(Exception ex){
             
         }
@@ -445,6 +443,7 @@ return null;
             String path=raff.readUTF();
             System.out.println(path);
             CuadroFoto.setIcon(new javax.swing.ImageIcon(path));
+            raff.close();
         }catch(Exception ex){
             
         }
